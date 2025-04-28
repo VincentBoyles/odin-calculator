@@ -1,6 +1,8 @@
 const point = document.querySelector(".point");
 point.addEventListener("click", () => {
-    content.textContent += '.';
+    if (!(content.textContent.includes('.'))) {
+        content.textContent += '.';
+    }
 })
 
 const zero = document.querySelector(".zero");
@@ -60,9 +62,7 @@ clear.addEventListener("click", () => {
 
 const backspace = document.querySelector(".backspace");
 backspace.addEventListener("click", () => {
-    const arr = [...content.textContent];
-    const length = arr.length-1;
-    content.textContent = arr.splice(0, 1);
+    content.textContent = content
 })
 
 const display = document.querySelector(".display");
