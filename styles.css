@@ -14,14 +14,9 @@
 
 button {
     border-color: rgba(0, 0, 0, 0.671);
-    font-size: larger;
+    font-size: x-large;
     font-weight: bolder;
-}
-
-.content {
-    display: flex;
-    color: white;
-    font-size: 40px;
+    font-family: monospace;
 }
 
 .border {
@@ -48,13 +43,21 @@ button {
     align-content: center;
 }
 
+.content {
+    display: flex;
+    padding-top: 5px;
+    color: white;
+    font-size: 40px;
+    font-family: monospace;
+}
+
 .first-column {
     display: flex;
     justify-content: center;
     text-align: center;
 }
 
-.clear, .backspace, .divide {
+.clear, .posneg, .percent, .divide {
     width: 60px;
     height: 60px;
     margin-bottom: 20px;
@@ -64,9 +67,6 @@ button {
     align-content: center;
 }
 
-.clear {
-    width: 140px;
-}
 
 .second-column {
     display: flex;
@@ -146,15 +146,16 @@ button {
     background-color: rgba(41, 41, 131, 0.473);
 }
 
-.equals {
+.clear, .posneg, .percent {
     background-color: rgba(179, 0, 0, 0.788);
     color: white;
     transition: background-color 0.5s;
 }
 
-.equals:hover {
-    background-color: rgba(196, 58, 58, 0.788);
+.clear:hover, .posneg:hover, .percent:hover {
+    background-color: rgb(182, 73, 73);
 }
+
 
 .divide, .multiply, .subtract, .add {
     background-color: rgb(228, 142, 63);
@@ -163,15 +164,18 @@ button {
 }
 
 .divide:hover, .multiply:hover, .subtract:hover, .add:hover {
-    background-color: rgb(216, 162, 112);
+    background-color: rgb(209, 174, 142);
 }
 
-.clear, .backspace {
-    background-color: rgb(96, 96, 146);
+.equals {
+    background-color: rgb(32, 32, 102);
     color: white;
     transition: background-color 0.5s;
 }
 
-.clear:hover, .backspace:hover {
-    background-color: rgb(121, 121, 146);
+
+.equals:hover {
+    background-color: rgba(81, 93, 136, 0.788);
 }
+
+
