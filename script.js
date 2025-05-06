@@ -1,9 +1,9 @@
-// const point = document.querySelector(".point");
-// point.addEventListener("click", () => {
-//     if (!(content.textContent.includes('.'))) {
-//         content.textContent += '.';
-//     }
-// })
+const point = document.querySelector(".point");
+point.addEventListener("click", () => {
+    const number = Number(content.textContent);
+    content.textContent = decimal(number);
+    decimal(num1);
+})
 
 const zero = document.querySelector(".zero");
 zero.addEventListener("click", () => {
@@ -104,24 +104,24 @@ clear.addEventListener("click", () => {
     content.textContent = "";
     num1 = 0;
     num2 = 0;
+    result = 0;
     input1 = "";
     input2 = "";
-    operator;
+    operator = '';
     counter = 0;
 })
 
-// const posneg = document.querySelector(".posneg");
-// posneg.addEventListener("click", () => {
-//     content.textContent = `${-content.textContent}`;
-//     content.textContent *= -1;
-// })
+const posneg = document.querySelector(".posneg");
+posneg.addEventListener("click", () => {
+    content.textContent *= -1;
+})
 
-// const percent = document.querySelector(".percent");
-// percent.addEventListener("click", () => {
-//     const number = Number(content.textContent);
-//     content.textContent = percentage(number);
-//     input = percentage(input);
-// })
+const percent = document.querySelector(".percent");
+percent.addEventListener("click", () => {
+    const number = Number(content.textContent);
+    content.textContent = percentage(number);
+    num1 = percentage(num1);
+})
 
 const display = document.querySelector(".display");
 const content = document.querySelector(".content");
@@ -130,12 +130,15 @@ const content = document.querySelector(".content");
 content.textContent = '';
 display.appendChild(content);
 
+
 let num1 = 0;
 let num2 = 0;
 let input1 = "";
 let input2 = "";
-let operator;
 let counter = 0;
+let result = 0;
+let operator;
+
 
 function operate(operator, num1, num2) {
     return operator(num1, num2);
@@ -159,8 +162,9 @@ function multiply(a, b) {
 
 function divide(a, b) {
     if (b === 0) {
-         num1 = 0;
-         num2 = 0;
+         num1 = 1;
+         num2 = 1;
+         result = 1;
          input1 = "";
          input2 = "";
          operator;
@@ -176,6 +180,10 @@ function percentage(a) {
     return a /= 100;
 }
 
+function decimal(a) {
+    return a.toFixed(1);
+}
+
 
 function numbers(a) {
     if (counter > 0) {
@@ -189,11 +197,12 @@ function numbers(a) {
     }
 }
 
+
 function operatorFunction(a) {
     counter++;
     operator = a;
     if (counter > 1) {
-        const result = operate(operator, num1, num2);
+        result = operate(operator, num1, num2);
         content.textContent = result;
         num1 = result;
         input1 = "";
