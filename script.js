@@ -1,112 +1,127 @@
-const point = document.querySelector(".point");
-point.addEventListener("click", () => {
-    if (!(content.textContent.includes('.'))) {
-        content.textContent += '.';
-    }
-})
+// const point = document.querySelector(".point");
+// point.addEventListener("click", () => {
+//     if (!(content.textContent.includes('.'))) {
+//         content.textContent += '.';
+//     }
+// })
 
 const zero = document.querySelector(".zero");
 zero.addEventListener("click", () => {
-    content.textContent += 0;
-
+    numbers(0)
 })
+
 
 const one = document.querySelector(".one");
 one.addEventListener("click", () => {
-    content.textContent += 1;
-    input = 1;
+    numbers(1)
 })
+
 
 const two = document.querySelector(".two");
 two.addEventListener("click", () => {
-    content.textContent += 2;
-    input = 2;
+    numbers(2)
 
 })
+
 
 const three = document.querySelector(".three");
 three.addEventListener("click", () => {
-    content.textContent += 3;
-    input = 3;
+    numbers(3)
 })
+
 
 const four = document.querySelector(".four");
 four.addEventListener("click", () => {
-    content.textContent += 4;
-    input = 4;
+    numbers(4)
 })
+
 
 const five = document.querySelector(".five");
 five.addEventListener("click", () => {
-    content.textContent += 5;
-    input = 5;
+    numbers(5)
 })
+
 
 const six = document.querySelector(".six");
 six.addEventListener("click", () => {
-    content.textContent += 6;
-    input = 6;
+    numbers(6)
 })
+
 
 const seven = document.querySelector(".seven");
 seven.addEventListener("click", () => {
-    content.textContent += 7;
-    input = 7;
+    numbers(7)
 })
+
 
 const eight = document.querySelector(".eight");
 eight.addEventListener("click", () => {
-    content.textContent += 8;
-    input = 8;
+    numbers(8)
 })
+
 
 const nine = document.querySelector(".nine");
 nine.addEventListener("click", () => {
-    content.textContent += 9;
-    input = 9;
+    numbers(9)
 })
+
 
 
 const divideBtn = document.querySelector(".divide");
 divideBtn.addEventListener("click", () => {
-    content.textContent += "/";
-    operator = divide();
+    operatorFunction(divide);
 })
 
 const multiplyBtn = document.querySelector(".multiply");
 multiplyBtn.addEventListener("click", () => {
-    content.textContent += "x";
-    operator = multiply();
+    operatorFunction(multiply);
 })
 
 const subtractBtn = document.querySelector(".subtract");
 subtractBtn.addEventListener("click", () => {
-    content.textContent += "-";
-    operator = subtract();
+    operatorFunction(subtract);
 })
 
 const addBtn = document.querySelector(".add");
 addBtn.addEventListener("click", () => {
-    content.textContent += "+"
-    operator = add();
+    operatorFunction(add);
 })
 
 
 const equalsBtn = document.querySelector(".equals");
 equalsBtn.addEventListener("click", () => {
-    operate()
+    const result = operate(operator, num1, num2);
+    content.textContent = result;
+    num1 = result;
+    input1 = "";
+    input2 = "";
+    num2 = 0;
 })
 
 
 const clear = document.querySelector(".clear");
 clear.addEventListener("click", () => {
     content.textContent = "";
+    num1 = 0;
+    num2 = 0;
+    input1 = "";
+    input2 = "";
+    operator;
+    counter = 0;
 })
 
-const backspace = document.querySelector(".backspace");
-backspace.addEventListener("click", () => {
-    
-})
+// const posneg = document.querySelector(".posneg");
+// posneg.addEventListener("click", () => {
+//     content.textContent = `${-content.textContent}`;
+//     content.textContent *= -1;
+// })
+
+// const percent = document.querySelector(".percent");
+// percent.addEventListener("click", () => {
+//     const number = Number(content.textContent);
+//     content.textContent = percentage(number);
+//     input = percentage(input);
+// })
 
 const display = document.querySelector(".display");
 const content = document.querySelector(".content");
@@ -115,28 +130,74 @@ const content = document.querySelector(".content");
 content.textContent = '';
 display.appendChild(content);
 
-let input = 0;
 let num1 = 0;
 let num2 = 0;
+let input1 = "";
+let input2 = "";
 let operator;
+let counter = 0;
 
-function operate(operator, current, previous) {
-    return operator(current, previous);
+function operate(operator, num1, num2) {
+    return operator(num1, num2);
 }
 
 
 function add(a, b) {
-    return a + b;
+    return a += b;
 }
+
 
 function subtract(a, b) {
-    return a - b;
+    return a -= b;
 }
+
 
 function multiply(a, b) {
-    return a * b;
+    return a *= b;
 }
 
+
 function divide(a, b) {
-    return a / b;
+    if (b === 0) {
+         num1 = 0;
+         num2 = 0;
+         input1 = "";
+         input2 = "";
+         operator;
+         counter = 0;
+        return content.textContent = "Math Error";
+    } else {
+        return a /= b;
+    }
+}
+
+
+function percentage(a) {
+    return a /= 100;
+}
+
+
+function numbers(a) {
+    if (counter > 0) {
+        input2 += `${a}`;
+        content.textContent = input2;
+        num2 = Number(input2);
+    } else {
+        input1 += `${a}`;
+        content.textContent = input1;
+        num1 = Number(input1);
+    }
+}
+
+function operatorFunction(a) {
+    counter++;
+    operator = a;
+    if (counter > 1) {
+        const result = operate(operator, num1, num2);
+        content.textContent = result;
+        num1 = result;
+        input1 = "";
+        input2 = "";
+        num2 = 0;
+    }
 }
